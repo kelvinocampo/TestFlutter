@@ -1,0 +1,15 @@
+{
+  "@@locale": "es",
+  "appTitle": "Estilo ChatGPT",
+  "title": "Configuración",
+  "language": "Idioma",
+  "darkMode": "Modo Oscuro",
+  "hintMessage": "Escribe un mensaje...",
+  "settings": "Configuración",
+  "theme": "Tema",
+  "darkTheme": "Tema oscuro",
+  "spanish": "Español",
+  "english": "Inglés",
+  "noMessages": "No hay mensajes aún",
+  "send": "Enviar"
+}
