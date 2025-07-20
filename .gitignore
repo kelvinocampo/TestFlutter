@@ -1,0 +1,118 @@
+# ===============================================
+# Archivos misceláneos
+# ===============================================
+*.class
+*.log
+*.pyc
+*.swp
+*.swo
+*.tmp
+*.temp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+app.*.symbols
+app.*.map.json
+
+# ===============================================
+# Configuraciones de IDE/Editor
+# ===============================================
+# IntelliJ/Android Studio
+*.iml
+*.ipr
+*.iws
+.idea/
+.gradle/
+
+# VS Code
+# (Descomenta si no quieres incluir configuraciones de VSCode)
+#.vscode/
+
+# Otros IDEs
+.settings/
+.metadata/
+.metadata
+
+# ===============================================
+# Flutter/Dart/Pub específico
+# ===============================================
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+flutter_plugins/
+.fvm/
+
+# ===============================================
+# Entorno y credenciales (NUNCA subir)
+# ===============================================
+.env
+.env.*
+*.key
+*.keystore
+*.jks
+*.p12
+*.cert
+*.cer
+*.lock
+
+# ===============================================
+# Android específico
+# ===============================================
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+/android/app/src/main/java/io/flutter/plugins/
+/android/app/src/main/kotlin/io/flutter/plugins/
+/android/app/src/main/res/raw/
+
+# ===============================================
+# iOS específico
+# ===============================================
+/ios/Flutter/App.framework/
+/ios/Flutter/Flutter.podspec
+/ios/Flutter/flutter_export_environment.sh
+/ios/Pods/
+/ios/.symlinks/
+**/DerivedData/
+**/Documentation/
+**/xcuserdata/
+**/PkgInfo
+**/project.xcworkspace/
+**/xcshareddata/
+
+# Archivos de conflictos y backups
+*.orig
+*.rej
+*.bak
+*.backup
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs y archivos temporales
+*.log
+*.tmp
+*.temp
+debug/
+logs/
+
+# Configuraciones locales
+*.local
+*.dev
+*.test
+
+# Lock files y caches adicionales
+.packages
