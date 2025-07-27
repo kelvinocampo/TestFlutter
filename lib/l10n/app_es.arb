@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "appTitle": "Estilo ChatGPT",
+  "appTitle": "IA Movil",
   "title": "Configuración",
   "language": "Idioma",
   "darkMode": "Modo Oscuro",
@@ -52,5 +52,8 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+  "limit_apikeys": "No puedes agregar más de 10 claves.",
+  "name_exists": "El nombre ya existe.",
+  "key_exists": "La clave ya existe."
 }

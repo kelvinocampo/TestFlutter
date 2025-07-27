@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "ChatGPT Style",
+  "appTitle": "AI Mobile",
   "title": "Settings",
   "language": "Language",
   "darkMode": "Dark Mode",
@@ -12,7 +12,6 @@
   "english": "English",
   "noMessages": "No messages yet",
   "send": "Send",
-
   "edit": "Edit",
   "active": "Active",
   "delete": "Delete",
@@ -25,7 +24,6 @@
   "apikey_required": "API Key is required",
   "save": "Save",
   "cancel": "Cancel",
-
   "restart_chat": "Restart Chat",
   "errorNoApiKey": "No active API key.",
   "errorNoResponse": "Gemini didn't respond.",
@@ -54,5 +52,8 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+  "limit_apikeys": "You cannot add more than 10 keys.",
+  "name_exists": "The name already exists.",
+  "key_exists": "The key already exists."
 }

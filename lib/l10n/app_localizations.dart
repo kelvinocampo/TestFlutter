@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'ChatGPT Style'**
+  /// **'AI Mobile'**
   String get appTitle;
 
   /// No description provided for @title.
@@ -307,6 +307,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to delete {name}?'**
   String confirm_delete_message(Object name);
+
+  /// No description provided for @limit_apikeys.
+  ///
+  /// In en, this message translates to:
+  /// **'You cannot add more than 10 keys.'**
+  String get limit_apikeys;
+
+  /// No description provided for @name_exists.
+  ///
+  /// In en, this message translates to:
+  /// **'The name already exists.'**
+  String get name_exists;
+
+  /// No description provided for @key_exists.
+  ///
+  /// In en, this message translates to:
+  /// **'The key already exists.'**
+  String get key_exists;
 }
 
 class _AppLocalizationsDelegate

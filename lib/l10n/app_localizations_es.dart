@@ -9,7 +9,7 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'Estilo ChatGPT';
+  String get appTitle => 'IA Movil';
 
   @override
   String get title => 'Configuración';
@@ -118,4 +118,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String confirm_delete_message(Object name) {
     return '¿Seguro que deseas eliminar $name?';
   }
+
+  @override
+  String get limit_apikeys => 'No puedes agregar más de 10 claves.';
+
+  @override
+  String get name_exists => 'El nombre ya existe.';
+
+  @override
+  String get key_exists => 'La clave ya existe.';
 }

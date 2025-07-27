@@ -15,7 +15,7 @@ class GeminiService {
     final activeKey = await ApiKeyDatabase.getActiveKey();
     if (activeKey == null) throw Exception("No hay API Key activa.");
 
-    final model = GenerativeModel(model: 'gemini-pro', apiKey: activeKey.key);
+    final model = GenerativeModel(model: 'gemini-2.5-flash', apiKey: activeKey.key);
 
     final prompt = locale.languageCode == 'en'
         ? "Always reply in English, never use Spanish."

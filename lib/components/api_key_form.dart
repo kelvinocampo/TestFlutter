@@ -73,7 +73,7 @@ class _ApiKeyFormState extends State<ApiKeyForm> {
 
         await provider.editKey(updated);
       } else {
-        await provider.addKey(name, key);
+        await provider.addKey(context, name, key);
       }
 
       if (mounted) Navigator.of(context).pop();

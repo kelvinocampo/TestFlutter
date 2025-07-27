@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/api_key_model.dart';
 import '../services/api_key_database.dart';
+import '../l10n/app_localizations.dart';
 
 class ApiKeyProvider with ChangeNotifier {
   List<ApiKey> _keys = [];
@@ -13,14 +14,22 @@ class ApiKeyProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addKey(String name, String key) async {
-    if (_keys.length >= 10) throw Exception("No puedes agregar más de 10 claves.");
+  Future<void> addKey(BuildContext context, String name, String key) async {
+    final localizations = AppLocalizations.of(context)!;
+
+    if (_keys.length >= 10) {
+      throw Exception(localizations.limit_apikeys);
+    }
 
     final existsByName = _keys.any((k) => k.name == name);
-    if (existsByName) throw Exception("El nombre ya existe.");
+    if (existsByName) {
+      throw Exception(localizations.name_exists);
+    }
 
     final existsByKey = _keys.any((k) => k.key == key);
-    if (existsByKey) throw Exception("La clave ya existe.");
+    if (existsByKey) {
+      throw Exception(localizations.key_exists);
+    }
 
     final newKey = ApiKey(name: name, key: key);
     final id = await ApiKeyDatabase.insertKey(newKey);
