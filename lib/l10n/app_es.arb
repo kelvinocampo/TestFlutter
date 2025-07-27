@@ -24,5 +24,11 @@
   "apikey_name_required": "El nombre de la API Key es obligatorio",
   "apikey_required": "La API Key es obligatoria",
   "save": "Guardar",
-  "cancel": "Cancelar"
+  "cancel": "Cancelar",
+
+  "restart_chat": "Reiniciar Chat",
+  "errorNoApiKey": "No hay API Key activa.",
+  "errorNoResponse": "Gemini no respondió.",
+  "errorUnexpected": "Error: {message}"
+  "errorUnexpected@args": ["message"]
 }

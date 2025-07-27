@@ -241,6 +241,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// No description provided for @restart_chat.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart Chat'**
+  String get restart_chat;
+
+  /// No description provided for @errorNoApiKey.
+  ///
+  /// In en, this message translates to:
+  /// **'No active API key.'**
+  String get errorNoApiKey;
+
+  /// No description provided for @errorNoResponse.
+  ///
+  /// In en, this message translates to:
+  /// **'Gemini didn\'t respond.'**
+  String get errorNoResponse;
+
+  /// No description provided for @errorUnexpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {message}'**
+  String errorUnexpected(Object message);
 }
 
 class _AppLocalizationsDelegate

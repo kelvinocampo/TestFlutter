@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _isLoading = true;
     });
 
-    final reply = await GeminiService.chat(text);
+    final reply = await GeminiService.chat(text, context);
 
     if (!mounted) return;
 
@@ -43,6 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(localizations.appTitle),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            tooltip: localizations.restart_chat,
+            onPressed: () {
+              setState(() {
+                _messages.clear();
+              });
+              GeminiService.reset();
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.settings),
             tooltip: localizations.settings,
@@ -65,9 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         localizations.noMessages,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.grey,
-                              fontStyle: FontStyle.italic,
-                            ),
+                          color: Colors.grey,
+                          fontStyle: FontStyle.italic,
+                        ),
                       ),
                     )
                   : ListView.separated(
@@ -85,30 +95,41 @@ class _HomeScreenState extends State<HomeScreen> {
                           alignment: isUser
                               ? Alignment.centerRight
                               : Alignment.centerLeft,
-                          child: Card(
-                            color: isUser
-                                ? Theme.of(context)
-                                    .colorScheme
-                                    .primaryContainer
-                                : Theme.of(context)
-                                    .colorScheme
-                                    .surfaceVariant,
-                            elevation: 2,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                          child: Container(
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.of(context).size.width * 0.7,
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: Text(
-                                message['text']!,
-                                style: Theme.of(context).textTheme.bodyLarge,
+                            margin: const EdgeInsets.symmetric(vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 10,
+                            ),
+                            decoration: BoxDecoration(
+                              color: isUser
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(
+                                      context,
+                                    ).colorScheme.surfaceContainerHighest,
+                              borderRadius: BorderRadius.only(
+                                topLeft: const Radius.circular(16),
+                                topRight: const Radius.circular(16),
+                                bottomLeft: Radius.circular(isUser ? 16 : 0),
+                                bottomRight: Radius.circular(isUser ? 0 : 16),
+                              ),
+                            ),
+                            child: Text(
+                              message['text']!,
+                              style: TextStyle(
+                                color: isUser
+                                    ? Colors.white
+                                    : Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                           ),
                         );
                       },
-                      separatorBuilder: (_, __) =>
-                          const SizedBox(height: 8),
+
+                      separatorBuilder: (_, __) => const SizedBox(height: 8),
                     ),
             ),
 
@@ -148,9 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Theme.of(context)
-                            .colorScheme
-                            .surfaceContainerHighest,
+                        fillColor: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                       ),
                       onSubmitted: (_) => _sendMessage(),
                     ),
@@ -158,8 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(width: 8),
                   CircleAvatar(
                     radius: 24,
-                    backgroundColor:
-                        Theme.of(context).colorScheme.primary,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     child: IconButton(
                       icon: const Icon(Icons.send, color: Colors.white),
                       onPressed: _sendMessage,

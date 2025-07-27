@@ -79,4 +79,18 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get cancel => 'Cancelar';
+
+  @override
+  String get restart_chat => 'Reiniciar Chat';
+
+  @override
+  String get errorNoApiKey => 'No hay API Key activa.';
+
+  @override
+  String get errorNoResponse => 'Gemini no respondió.';
+
+  @override
+  String errorUnexpected(Object message) {
+    return 'Error: $message';
+  }
 }
