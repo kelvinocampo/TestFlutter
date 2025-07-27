@@ -25,6 +25,15 @@ class ApiKeyDatabase {
     });
   }
 
+  static Future<ApiKey?> getActiveKey() async {
+    final db = await database;
+    final res = await db.query('api_keys', where: 'is_active = ?', whereArgs: [1]);
+    if (res.isNotEmpty) {
+      return ApiKey.fromMap(res.first);
+    }
+    return null;
+  }
+
   static Future<List<ApiKey>> getAllKeys() async {
     final db = await database;
     final res = await db.query('api_keys');

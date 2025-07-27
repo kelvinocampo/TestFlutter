@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../services/gemini_service.dart'; // Ajusta el path
 import 'settings_screen.dart';
 import '../l10n/app_localizations.dart';
 
@@ -11,16 +12,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _controller = TextEditingController();
-  final List<String> _messages = [];
+  final List<Map<String, String>> _messages = [];
+  bool _isLoading = false;
 
-  void _sendMessage() {
+  void _sendMessage() async {
     final text = _controller.text.trim();
-    if (text.isNotEmpty) {
-      setState(() {
-        _messages.insert(0, text);
-        _controller.clear();
-      });
-    }
+    if (text.isEmpty) return;
+
+    setState(() {
+      _messages.insert(0, {'role': 'user', 'text': text});
+      _controller.clear();
+      _isLoading = true;
+    });
+
+    final reply = await GeminiService.chat(text);
+
+    if (!mounted) return;
+
+    setState(() {
+      _messages.insert(0, {'role': 'bot', 'text': reply});
+      _isLoading = false;
+    });
   }
 
   @override
@@ -53,9 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         localizations.noMessages,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.grey,
-                          fontStyle: FontStyle.italic,
-                        ),
+                              color: Colors.grey,
+                              fontStyle: FontStyle.italic,
+                            ),
                       ),
                     )
                   : ListView.separated(
@@ -65,22 +77,46 @@ class _HomeScreenState extends State<HomeScreen> {
                         vertical: 8,
                       ),
                       itemCount: _messages.length,
-                      itemBuilder: (_, index) => Card(
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Text(
-                            _messages[index],
-                            style: Theme.of(context).textTheme.bodyLarge,
+                      itemBuilder: (_, index) {
+                        final message = _messages[index];
+                        final isUser = message['role'] == 'user';
+
+                        return Align(
+                          alignment: isUser
+                              ? Alignment.centerRight
+                              : Alignment.centerLeft,
+                          child: Card(
+                            color: isUser
+                                ? Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer
+                                : Theme.of(context)
+                                    .colorScheme
+                                    .surfaceVariant,
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Text(
+                                message['text']!,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      separatorBuilder: (_, __) => const SizedBox(height: 8),
+                        );
+                      },
+                      separatorBuilder: (_, __) =>
+                          const SizedBox(height: 8),
                     ),
             ),
+
+            if (_isLoading)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: CircularProgressIndicator(),
+              ),
 
             // Campo de texto
             const Divider(height: 1),
@@ -112,7 +148,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderSide: BorderSide.none,
                         ),
                         filled: true,
-                        fillColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        fillColor: Theme.of(context)
+                            .colorScheme
+                            .surfaceContainerHighest,
                       ),
                       onSubmitted: (_) => _sendMessage(),
                     ),
@@ -120,7 +158,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(width: 8),
                   CircleAvatar(
                     radius: 24,
-                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primary,
                     child: IconButton(
                       icon: const Icon(Icons.send, color: Colors.white),
                       onPressed: _sendMessage,
