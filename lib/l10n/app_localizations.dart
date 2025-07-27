@@ -260,7 +260,7 @@ abstract class AppLocalizations {
   /// **'Gemini didn\'t respond.'**
   String get errorNoResponse;
 
-  /// No description provided for @errorUnexpected.
+  /// Displayed when an unexpected error occurs
   ///
   /// In en, this message translates to:
   /// **'Error: {message}'**

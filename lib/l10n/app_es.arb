@@ -29,6 +29,11 @@
   "restart_chat": "Reiniciar Chat",
   "errorNoApiKey": "No hay API Key activa.",
   "errorNoResponse": "Gemini no respondió.",
-  "errorUnexpected": "Error: {message}"
-  "errorUnexpected@args": ["message"]
+  "errorUnexpected": "Error: {message}",
+  "@errorUnexpected": {
+    "description": "Se muestra cuando ocurre un error inesperado",
+    "placeholders": {
+      "message": {}
+    }
+  }
 }
