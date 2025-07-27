@@ -43,4 +43,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get send => 'Send';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get edit_apikey => 'Edit Api Key';
+
+  @override
+  String get new_apikey => 'New Api Key';
+
+  @override
+  String get apikey_name => 'Unique Name';
+
+  @override
+  String get exceeded_apikey_limit => 'Exceeded 10 API Keys limit';
+
+  @override
+  String get add_apikey => 'Add API Key';
+
+  @override
+  String get apikey_name_required => 'API Key name is required';
+
+  @override
+  String get apikey_required => 'API Key is required';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get cancel => 'Cancel';
 }

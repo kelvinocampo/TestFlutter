@@ -11,5 +11,18 @@
   "spanish": "Español",
   "english": "Inglés",
   "noMessages": "No hay mensajes aún",
-  "send": "Enviar"
+  "send": "Enviar",
+  
+  "edit": "Editar",
+  "active": "Activar",
+  "delete": "Eliminar",
+  "edit_apikey": "Editar Api Key",
+  "new_apikey": "Nueva Api Key",
+  "apikey_name": "Nombre Unico",
+  "exceeded_apikey_limit": "Límite de 10 API Keys alcanzado",
+  "add_apikey": "Agregar API Key",
+  "apikey_name_required": "El nombre de la API Key es obligatorio",
+  "apikey_required": "La API Key es obligatoria",
+  "save": "Guardar",
+  "cancel": "Cancelar"
 }

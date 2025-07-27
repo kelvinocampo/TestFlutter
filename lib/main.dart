@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'screens/home_screen.dart';
 import 'providers/theme_provider.dart';
+import 'providers/api_key_provider.dart';
 import 'providers/locale_provider.dart';
 import 'l10n/app_localizations.dart';
 
@@ -13,6 +14,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => ApiKeyProvider()),
       ],
       child: const MyApp(),
     ),

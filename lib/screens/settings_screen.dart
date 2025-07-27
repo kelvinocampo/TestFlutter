@@ -2,15 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/theme_provider.dart';
 import '../providers/locale_provider.dart';
+import '../providers/api_key_provider.dart';
 import '../l10n/app_localizations.dart';
+import '../components/api_key_form.dart';
+// import '../models/api_key_model.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ApiKeyProvider>().loadKeys();
+  }
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final localeProvider = Provider.of<LocaleProvider>(context);
+    final apiKeyProvider = Provider.of<ApiKeyProvider>(context);
     final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -18,6 +33,7 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          /// Tema
           SectionHeader(title: localizations.theme),
           SwitchListTile(
             title: Text(localizations.darkTheme),
@@ -26,6 +42,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           const Divider(height: 32),
 
+          /// Idioma
           SectionHeader(title: localizations.language),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -53,13 +70,83 @@ class SettingsScreen extends StatelessWidget {
               ],
             ),
           ),
+          const Divider(height: 32),
+
+          /// API Keys
+          SectionHeader(title: '🔑 API Keys'),
+
+          ...apiKeyProvider.keys.map(
+            (apiKey) => Card(
+              elevation: 2,
+              margin: const EdgeInsets.symmetric(vertical: 4),
+              child: ListTile(
+                title: Text(apiKey.name),
+                subtitle: Text(
+                  apiKey.key,
+                  style: const TextStyle(fontSize: 12),
+                ),
+                leading: Icon(
+                  apiKey.isActive ? Icons.check_circle : Icons.circle_outlined,
+                  color: apiKey.isActive ? Colors.green : Colors.grey,
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!apiKey.isActive)
+                      IconButton(
+                        tooltip: localizations.active,
+                        icon: const Icon(Icons.power_settings_new),
+                        onPressed: () {
+                          apiKeyProvider.activateKey(apiKey.id!);
+                        },
+                      ),
+                    IconButton(
+                      tooltip: localizations.edit,
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (_) => ApiKeyForm(existingKey: apiKey),
+                        );
+                      },
+                    ),
+                    IconButton(
+                      tooltip: localizations.delete,
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        apiKeyProvider.deleteKey(apiKey.id!);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          if (apiKeyProvider.canAddMore)
+            ElevatedButton.icon(
+              icon: const Icon(Icons.add),
+              label: Text(localizations.add_apikey),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (_) => const ApiKeyForm(),
+                );
+              },
+            )
+          else
+            Text(
+              localizations.exceeded_apikey_limit,
+              style: TextStyle(color: Colors.red),
+            ),
         ],
       ),
     );
   }
 }
 
-/// Widget para encabezado de sección
 class SectionHeader extends StatelessWidget {
   final String title;
 

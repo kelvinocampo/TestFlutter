@@ -169,6 +169,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Send'**
   String get send;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @edit_apikey.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Api Key'**
+  String get edit_apikey;
+
+  /// No description provided for @new_apikey.
+  ///
+  /// In en, this message translates to:
+  /// **'New Api Key'**
+  String get new_apikey;
+
+  /// No description provided for @apikey_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Unique Name'**
+  String get apikey_name;
+
+  /// No description provided for @exceeded_apikey_limit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exceeded 10 API Keys limit'**
+  String get exceeded_apikey_limit;
+
+  /// No description provided for @add_apikey.
+  ///
+  /// In en, this message translates to:
+  /// **'Add API Key'**
+  String get add_apikey;
+
+  /// No description provided for @apikey_name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'API Key name is required'**
+  String get apikey_name_required;
+
+  /// No description provided for @apikey_required.
+  ///
+  /// In en, this message translates to:
+  /// **'API Key is required'**
+  String get apikey_required;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
 }
 
 class _AppLocalizationsDelegate
