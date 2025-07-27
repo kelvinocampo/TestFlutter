@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/theme_provider.dart';
 import '../providers/locale_provider.dart';
+import '../models/api_key_model.dart';
 import '../providers/api_key_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../components/api_key_form.dart';
@@ -18,6 +19,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
     context.read<ApiKeyProvider>().loadKeys();
+  }
+
+  void _confirmDelete(BuildContext context, ApiKey key) {
+    final localizations = AppLocalizations.of(context)!;
+
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(localizations.confirm_delete_title),
+        content: Text(localizations.confirm_delete_message(key.name)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(localizations.cancel),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.red,
+            ),
+            onPressed: () async {
+              Navigator.of(context).pop();
+              await context.read<ApiKeyProvider>().deleteKey(key.id!);
+            },
+            child: Text(localizations.delete),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -72,7 +102,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const Divider(height: 32),
 
           /// API Keys
-          SectionHeader(title: '🔑 API Keys'),
+          SectionHeader(title: 'API Keys'),
 
           ...apiKeyProvider.keys.map(
             (apiKey) => Card(
@@ -112,9 +142,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     IconButton(
                       tooltip: localizations.delete,
                       icon: const Icon(Icons.delete),
-                      onPressed: () {
-                        apiKeyProvider.deleteKey(apiKey.id!);
-                      },
+                      onPressed: () => _confirmDelete(context, apiKey),
                     ),
                   ],
                 ),

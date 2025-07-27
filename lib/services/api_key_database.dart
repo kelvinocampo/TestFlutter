@@ -13,8 +13,11 @@ class ApiKeyDatabase {
 
   static Future<Database> _initDB() async {
     final path = join(await getDatabasesPath(), 'apikeys.db');
-    return openDatabase(path, version: 1, onCreate: (db, version) {
-      return db.execute('''
+    return openDatabase(
+      path,
+      version: 1,
+      onCreate: (db, version) {
+        return db.execute('''
         CREATE TABLE api_keys (
           key_id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL UNIQUE,
@@ -22,12 +25,17 @@ class ApiKeyDatabase {
           is_active INTEGER NOT NULL
         )
       ''');
-    });
+      },
+    );
   }
 
   static Future<ApiKey?> getActiveKey() async {
     final db = await database;
-    final res = await db.query('api_keys', where: 'is_active = ?', whereArgs: [1]);
+    final res = await db.query(
+      'api_keys',
+      where: 'is_active = ?',
+      whereArgs: [1],
+    );
     if (res.isNotEmpty) {
       return ApiKey.fromMap(res.first);
     }
@@ -40,14 +48,19 @@ class ApiKeyDatabase {
     return res.map((e) => ApiKey.fromMap(e)).toList();
   }
 
-  static Future<void> insertKey(ApiKey key) async {
+  static Future<int> insertKey(ApiKey key) async {
     final db = await database;
-    await db.insert('api_keys', key.toMap());
+    return await db.insert('api_keys', key.toMap());
   }
 
   static Future<void> updateKey(ApiKey key) async {
     final db = await database;
-    await db.update('api_keys', key.toMap(), where: 'key_id = ?', whereArgs: [key.id]);
+    await db.update(
+      'api_keys',
+      key.toMap(),
+      where: 'key_id = ?',
+      whereArgs: [key.id],
+    );
   }
 
   static Future<void> deleteKey(int id) async {
@@ -59,7 +72,12 @@ class ApiKeyDatabase {
     final db = await database;
     await db.transaction((txn) async {
       await txn.update('api_keys', {'is_active': 0});
-      await txn.update('api_keys', {'is_active': 1}, where: 'key_id = ?', whereArgs: [id]);
+      await txn.update(
+        'api_keys',
+        {'is_active': 1},
+        where: 'key_id = ?',
+        whereArgs: [id],
+      );
     });
   }
 }

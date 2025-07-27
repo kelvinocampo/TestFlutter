@@ -265,6 +265,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error: {message}'**
   String errorUnexpected(Object message);
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @confirm_edit_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit API Key?'**
+  String get confirm_edit_title;
+
+  /// Displayed when confirming the edit of an API Key
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to edit the key {name}?'**
+  String confirm_edit_message(Object name);
+
+  /// No description provided for @confirm_delete_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete API Key?'**
+  String get confirm_delete_title;
+
+  /// Displayed when confirming the deletion of an API Key
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete {name}?'**
+  String confirm_delete_message(Object name);
 }
 
 class _AppLocalizationsDelegate

@@ -93,4 +93,29 @@ class AppLocalizationsEs extends AppLocalizations {
   String errorUnexpected(Object message) {
     return 'Error: $message';
   }
+
+  @override
+  String get close => 'Cerrar';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get confirm => 'Confirmar';
+
+  @override
+  String get confirm_edit_title => '¿Editar API Key?';
+
+  @override
+  String confirm_edit_message(Object name) {
+    return '¿Deseas editar la clave $name?';
+  }
+
+  @override
+  String get confirm_delete_title => '¿Eliminar API Key?';
+
+  @override
+  String confirm_delete_message(Object name) {
+    return '¿Seguro que deseas eliminar $name?';
+  }
 }

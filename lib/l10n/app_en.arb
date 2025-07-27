@@ -35,5 +35,24 @@
     "placeholders": {
       "message": {}
     }
+  },
+  "close": "Close",
+  "error": "Error",
+  "confirm": "Confirm",
+  "confirm_edit_title": "Edit API Key?",
+  "confirm_edit_message": "Do you want to edit the key {name}?",
+  "@confirm_edit_message": {
+    "description": "Displayed when confirming the edit of an API Key",
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "confirm_delete_title": "Delete API Key?",
+  "confirm_delete_message": "Are you sure you want to delete {name}?",
+  "@confirm_delete_message": {
+    "description": "Displayed when confirming the deletion of an API Key",
+    "placeholders": {
+      "name": {}
+    }
   }
 }

@@ -4,7 +4,21 @@ class ApiKey {
   final String key;
   final bool isActive;
 
-  ApiKey({this.id, required this.key, required this.name, this.isActive = false});
+  ApiKey({
+    this.id,
+    required this.key,
+    required this.name,
+    this.isActive = false,
+  });
+
+  ApiKey copyWith({int? id, String? name, String? key, bool? isActive}) {
+    return ApiKey(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      key: key ?? this.key,
+      isActive: isActive ?? this.isActive,
+    );
+  }
 
   Map<String, dynamic> toMap() => {
     'key_id': id,

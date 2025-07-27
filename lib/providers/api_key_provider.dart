@@ -13,10 +13,19 @@ class ApiKeyProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addKey(ApiKey key) async {
-    if (!canAddMore) return;
-    await ApiKeyDatabase.insertKey(key);
-    await loadKeys();
+  Future<void> addKey(String name, String key) async {
+    if (_keys.length >= 10) throw Exception("No puedes agregar más de 10 claves.");
+
+    final existsByName = _keys.any((k) => k.name == name);
+    if (existsByName) throw Exception("El nombre ya existe.");
+
+    final existsByKey = _keys.any((k) => k.key == key);
+    if (existsByKey) throw Exception("La clave ya existe.");
+
+    final newKey = ApiKey(name: name, key: key);
+    final id = await ApiKeyDatabase.insertKey(newKey);
+    _keys.add(newKey.copyWith(id: id));
+    notifyListeners();
   }
 
   Future<void> editKey(ApiKey updated) async {

@@ -35,26 +35,64 @@ class _ApiKeyFormState extends State<ApiKeyForm> {
   }
 
   Future<void> _save() async {
-    if (_formKey.currentState!.validate()) {
-      final nameText = _nameController.text.trim();
-      final keyText = _keyController.text.trim();
-      final provider = context.read<ApiKeyProvider>();
+    if (!_formKey.currentState!.validate()) return;
 
-      final newKey = ApiKey(
-        id: widget.existingKey?.id,
-        name: nameText,
-        key: keyText,
-        isActive: widget.existingKey?.isActive ?? false,
-      );
+    final name = _nameController.text.trim();
+    final key = _keyController.text.trim();
+    final provider = context.read<ApiKeyProvider>();
+    final localizations = AppLocalizations.of(context)!;
 
+    try {
       if (widget.existingKey != null) {
-        await provider.editKey(newKey);
+        final confirmed = await showDialog<bool>(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text(localizations.confirm_edit_title),
+            content: Text(localizations.confirm_edit_message(widget.existingKey!.name)),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(localizations.cancel),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text(localizations.confirm),
+              ),
+            ],
+          ),
+        );
+
+        if (confirmed != true) return;
+
+        final updated = ApiKey(
+          id: widget.existingKey!.id,
+          name: name,
+          key: key,
+          isActive: widget.existingKey!.isActive,
+        );
+
+        await provider.editKey(updated);
       } else {
-        await provider.addKey(newKey);
+        await provider.addKey(name, key);
       }
 
+      if (mounted) Navigator.of(context).pop();
+    } catch (e) {
       if (!mounted) return;
-      Navigator.of(context).pop();
+
+      await showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text(localizations.error),
+          content: Text(e.toString().replaceFirst("Exception: ", "")),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(localizations.close),
+            ),
+          ],
+        ),
+      );
     }
   }
 
@@ -64,7 +102,9 @@ class _ApiKeyFormState extends State<ApiKeyForm> {
 
     return AlertDialog(
       title: Text(
-        widget.existingKey != null ? localizations.edit_apikey : localizations.new_apikey,
+        widget.existingKey != null
+            ? localizations.edit_apikey
+            : localizations.new_apikey,
       ),
       content: Form(
         key: _formKey,
@@ -84,7 +124,7 @@ class _ApiKeyFormState extends State<ApiKeyForm> {
             const SizedBox(height: 12),
             TextFormField(
               controller: _keyController,
-              decoration: const InputDecoration(labelText: 'API Key'),
+              decoration: InputDecoration(labelText: "Api Key"),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return localizations.apikey_required;
@@ -100,7 +140,10 @@ class _ApiKeyFormState extends State<ApiKeyForm> {
           onPressed: () => Navigator.of(context).pop(),
           child: Text(localizations.cancel),
         ),
-        ElevatedButton(onPressed: _save, child: Text(localizations.save)),
+        ElevatedButton(
+          onPressed: _save,
+          child: Text(localizations.save),
+        ),
       ],
     );
   }
