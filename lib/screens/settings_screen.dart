@@ -7,6 +7,7 @@ import '../models/api_key_model.dart';
 import '../providers/api_key_provider.dart';
 import '../l10n/app_localizations.dart';
 import '../components/api_key_form.dart';
+import '../services/gemini_service.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -18,7 +19,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
-  late Animation<double> _fadeAnimation;
+  // late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
@@ -28,9 +29,9 @@ class _SettingsScreenState extends State<SettingsScreen>
       duration: const Duration(milliseconds: 400),
       vsync: this,
     );
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _animationController, curve: Curves.easeOutCubic),
-    );
+    // _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+    //   CurvedAnimation(parent: _animationController, curve: Curves.easeOutCubic),
+    // );
     _animationController.forward();
   }
 
@@ -127,9 +128,11 @@ class _SettingsScreenState extends State<SettingsScreen>
           ),
         ),
       ),
-      body: FadeTransition(
-        opacity: _fadeAnimation,
-        child: ListView(
+      body: 
+      // FadeTransition(
+      //   opacity: _fadeAnimation,
+      //   child:
+         ListView(
           padding: const EdgeInsets.all(20),
           children: [
             // Sección Tema
@@ -189,7 +192,7 @@ class _SettingsScreenState extends State<SettingsScreen>
             _buildInfoCard(localizations, colorScheme),
           ],
         ),
-      ),
+      // ),
     );
   }
 
@@ -324,6 +327,7 @@ class _SettingsScreenState extends State<SettingsScreen>
         onChanged: (newLocale) {
           HapticFeedback.lightImpact();
           localeProvider.setLocale(newLocale!);
+          GeminiService.reset();
         },
         items: [
           DropdownMenuItem(
