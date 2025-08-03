@@ -257,7 +257,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorNoResponse.
   ///
   /// In en, this message translates to:
-  /// **'Gemini didn\'t respond.'**
+  /// **'The AI didn\'t respond.'**
   String get errorNoResponse;
 
   /// Displayed when an unexpected error occurs
@@ -325,6 +325,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The key already exists.'**
   String get key_exists;
+
+  /// No description provided for @errorNoInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection.'**
+  String get errorNoInternet;
 }
 
 class _AppLocalizationsDelegate

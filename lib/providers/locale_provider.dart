@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+// import '../services/gemini_service.dart';
 
 class LocaleProvider with ChangeNotifier {
   Locale _locale = const Locale('es'); // Idioma por defecto
@@ -26,6 +27,7 @@ class LocaleProvider with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('localeCode', newLocale.languageCode);
     _locale = newLocale;
+    // GeminiService.reset();
     notifyListeners();
   }
 }

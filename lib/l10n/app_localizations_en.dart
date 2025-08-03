@@ -87,7 +87,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errorNoApiKey => 'No active API key.';
 
   @override
-  String get errorNoResponse => 'Gemini didn\'t respond.';
+  String get errorNoResponse => 'The AI didn\'t respond.';
 
   @override
   String errorUnexpected(Object message) {
@@ -127,4 +127,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get key_exists => 'The key already exists.';
+
+  @override
+  String get errorNoInternet => 'No internet connection.';
 }

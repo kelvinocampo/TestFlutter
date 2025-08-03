@@ -26,7 +26,7 @@
   "cancel": "Cancelar",
   "restart_chat": "Reiniciar Chat",
   "errorNoApiKey": "No hay API Key activa.",
-  "errorNoResponse": "Gemini no respondió.",
+  "errorNoResponse": "La IA no respondió.",
   "errorUnexpected": "Error: {message}",
   "@errorUnexpected": {
     "description": "Se muestra cuando ocurre un error inesperado",
@@ -55,5 +55,6 @@
   },
   "limit_apikeys": "No puedes agregar más de 10 claves.",
   "name_exists": "El nombre ya existe.",
-  "key_exists": "La clave ya existe."
+  "key_exists": "La clave ya existe.",
+  "errorNoInternet": "Sin conexión a internet."
 }

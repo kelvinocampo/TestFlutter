@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import '../models/api_key_model.dart';
+import 'gemini_service.dart';
 
 class ApiKeyDatabase {
   static Database? _db;
@@ -79,5 +80,6 @@ class ApiKeyDatabase {
         whereArgs: [id],
       );
     });
+    GeminiService.reset();
   }
 }
