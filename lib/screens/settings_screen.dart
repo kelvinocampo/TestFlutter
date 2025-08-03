@@ -19,7 +19,7 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
-  // late Animation<double> _fadeAnimation;
+  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
@@ -29,9 +29,9 @@ class _SettingsScreenState extends State<SettingsScreen>
       duration: const Duration(milliseconds: 400),
       vsync: this,
     );
-    // _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-    //   CurvedAnimation(parent: _animationController, curve: Curves.easeOutCubic),
-    // );
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeOutCubic),
+    );
     _animationController.forward();
   }
 
@@ -103,6 +103,10 @@ class _SettingsScreenState extends State<SettingsScreen>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
+    if (apiKeyProvider.keys.isEmpty) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
@@ -128,11 +132,9 @@ class _SettingsScreenState extends State<SettingsScreen>
           ),
         ),
       ),
-      body: 
-      // FadeTransition(
-      //   opacity: _fadeAnimation,
-      //   child:
-         ListView(
+      body: FadeTransition(
+        opacity: _fadeAnimation,
+        child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
             // Sección Tema
@@ -192,7 +194,7 @@ class _SettingsScreenState extends State<SettingsScreen>
             _buildInfoCard(localizations, colorScheme),
           ],
         ),
-      // ),
+      ),
     );
   }
 

@@ -9,6 +9,12 @@ import 'providers/locale_provider.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterError.onError = (details) {
+    FlutterError.presentError(details);
+  };
+
   runApp(
     MultiProvider(
       providers: [
