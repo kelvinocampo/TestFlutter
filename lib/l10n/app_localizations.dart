@@ -182,6 +182,12 @@ abstract class AppLocalizations {
   /// **'Active'**
   String get active;
 
+  /// No description provided for @key_active.
+  ///
+  /// In en, this message translates to:
+  /// **'ACTIVE'**
+  String get key_active;
+
   /// No description provided for @delete.
   ///
   /// In en, this message translates to:
@@ -331,6 +337,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No internet connection.'**
   String get errorNoInternet;
+
+  /// No description provided for @clear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clear;
+
+  /// No description provided for @confirmClearChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to clear the chat history?.'**
+  String get confirmClearChat;
+
+  /// No description provided for @apikey_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g.: My API'**
+  String get apikey_name_hint;
+
+  /// No description provided for @get_apikey_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Get your API key at Google AI Studio'**
+  String get get_apikey_info;
+
+  /// No description provided for @info.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get info;
+
+  /// No description provided for @app_info.
+  ///
+  /// In en, this message translates to:
+  /// **'This app uses the Gemini API to generate responses. Set up your API key to start chatting.'**
+  String get app_info;
+
+  /// No description provided for @active_darktheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark theme activated'**
+  String get active_darktheme;
+
+  /// No description provided for @active_lighttheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Light theme activated'**
+  String get active_lighttheme;
 }
 
 class _AppLocalizationsDelegate

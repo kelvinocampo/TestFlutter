@@ -23,7 +23,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
@@ -32,20 +32,43 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chat App',
       debugShowCheckedModeBanner: false,
-      themeMode: themeProvider.themeMode,
-      theme: ThemeData.light(),
-      darkTheme: ThemeData.dark(),
       locale: localeProvider.locale,
-      supportedLocales: const [
-        Locale('en'),
-        Locale('es'),
-      ],
+      supportedLocales: const [Locale('en'), Locale('es')],
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
+      theme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSeed(
+              seedColor: Colors.blue, // Color base azul
+              brightness: Brightness.light,
+            ).copyWith(
+              // Personalizar colores específicos si necesitas
+              primary: Colors.blue[600]!,
+              secondary: Colors.blue[400]!,
+              surface: Colors.white,
+            ),
+        useMaterial3: true,
+      ),
+
+      // TEMA OSCURO (Azul + Negro)
+      darkTheme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSeed(
+              seedColor: Colors.blue,
+              brightness: Brightness.dark,
+            ).copyWith(
+              primary: Colors.blue[400]!,
+              secondary: Colors.blue[300]!,
+              surface: Colors.grey[900]!,
+            ),
+        useMaterial3: true,
+      ),
+
+      themeMode: themeProvider.themeMode, // Sigue el sistema
       home: const HomeScreen(),
     );
   }

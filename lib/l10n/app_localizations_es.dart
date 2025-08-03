@@ -51,6 +51,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get active => 'Activar';
 
   @override
+  String get key_active => 'ACTIVA';
+
+  @override
   String get delete => 'Eliminar';
 
   @override
@@ -130,4 +133,30 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorNoInternet => 'Sin conexión a internet.';
+
+  @override
+  String get clear => 'Limpiar';
+
+  @override
+  String get confirmClearChat =>
+      '¿Estás seguro de que deseas limpiar el historial de chat?.';
+
+  @override
+  String get apikey_name_hint => 'Ej: Mi API Key';
+
+  @override
+  String get get_apikey_info => 'Obtén tu API key en Google AI Studio';
+
+  @override
+  String get info => 'Información';
+
+  @override
+  String get app_info =>
+      'Esta aplicación utiliza la API de Gemini para generar respuestas. Configura tu clave API para comenzar a chatear.';
+
+  @override
+  String get active_darktheme => 'Tema oscuro activado';
+
+  @override
+  String get active_lighttheme => 'Tema claro activado';
 }

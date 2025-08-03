@@ -14,6 +14,7 @@
   "send": "Enviar",
   "edit": "Editar",
   "active": "Activar",
+  "key_active": "ACTIVA",
   "delete": "Eliminar",
   "edit_apikey": "Editar Api Key",
   "new_apikey": "Nueva Api Key",
@@ -56,5 +57,13 @@
   "limit_apikeys": "No puedes agregar más de 10 claves.",
   "name_exists": "El nombre ya existe.",
   "key_exists": "La clave ya existe.",
-  "errorNoInternet": "Sin conexión a internet."
+  "errorNoInternet": "Sin conexión a internet.",
+  "clear": "Limpiar",
+  "confirmClearChat": "¿Estás seguro de que deseas limpiar el historial de chat?.",
+  "apikey_name_hint": "Ej: Mi API Key",
+  "get_apikey_info": "Obtén tu API key en Google AI Studio",
+  "info": "Información",
+  "app_info": "Esta aplicación utiliza la API de Gemini para generar respuestas. Configura tu clave API para comenzar a chatear.",
+  "active_darktheme": "Tema oscuro activado",
+  "active_lighttheme": "Tema claro activado"
 }
