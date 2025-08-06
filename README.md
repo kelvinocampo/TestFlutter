@@ -1,16 +1,24 @@
-# test_dev
+# Gestor de API Keys para Gemini - Aplicación Flutter
 
-A new Flutter project.
+## Características
+- Gestión de hasta 10 API Keys de Gemini (crear, editar, eliminar, activar)
+- Integración con el modelo Gemini 2.5 Flash
+- Alternar entre tema claro/oscuro
+- Soporte para múltiples idiomas (inglés/español)
+- Almacenamiento local seguro para las API Keys
 
-## Getting Started
+## Cómo obtener API Keys
+1. Visita Google AI Studio: https://aistudio.google.com/
+2. Inicia sesión con tu cuenta de Google
+3. Haz clic en "Get API Key" en la esquina superior derecha
+4. Copia tu clave generada (formato: AIzaSy...)
 
-This project is a starting point for a Flutter application.
+## Detalles Técnicos
+- Modelo utilizado: gemini-2.5-flash
+- Gestión de estado: Provider
+- Internacionalización: flutter_localizations
+- Almacenamiento: shared_preferences y sqflite
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Configuración para Desarrollo
+1. Clona el repositorio
+2. Ejecuta `flutter pub get`
